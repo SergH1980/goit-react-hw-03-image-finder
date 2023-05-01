@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+// import PropTypes from 'prop-types';
+
 import * as yup from 'yup';
 import { Formik } from 'formik';
 import { MdSearch } from 'react-icons/md';
@@ -12,19 +14,21 @@ import {
   ErrorMessage,
 } from './Searchbar.styled';
 
-let schema = yup
-  .object()
-  .shape({ query: yup.string().min(1).max(16).required() });
+let schema = yup.object().shape({ query: yup.string().min(1).max(46) });
 
 const initialValues = {
   query: ``,
 };
 
-export class Searchbar extends Component {
+export default class Searchbar extends Component {
+  // static propTypes = {
+  //   query: PropTypes.string.isRequired,
+  // };
+
   render() {
     const handleSubmit = (values, { resetForm }) => {
-      resetForm();
       this.props.onSubmit(values.query);
+      resetForm();
     };
     return (
       <Formik

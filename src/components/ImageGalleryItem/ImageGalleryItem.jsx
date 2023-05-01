@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
 import { ImageCard, ImageCardImage } from './ImageGalleryItem.styled';
-import { Modal } from 'components/Modal/Modal';
-// import { instance } from 'components/Modal/Modal';
+import Modal from 'components/Modal/Modal';
+import PropTypes from 'prop-types';
 
-export class ImageGalleryItem extends Component {
+export default class ImageGalleryItem extends Component {
+  static propTypes = {
+    alt: PropTypes.string.isRequired,
+    largeImage: PropTypes.string.isRequired,
+    src: PropTypes.string.isRequired,
+  };
   state = {
     showModal: false,
   };
-  toggleModal = e => {
-    console.log(e);
-    this.setState = ({ showModal }) => {};
+
+  openModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  closeModal = () => {
+    this.setState({ showModal: false });
   };
 
   render() {
     const { src, alt, largeImage } = this.props;
     return (
-      <ImageCard onClick={this.toggleModal} className="gallery-item">
+      <ImageCard onClick={this.openModal} className="gallery-item">
         <ImageCardImage src={src} alt={alt} />
         {this.state.showModal && (
-          <Modal>
+          <Modal onClose={this.closeModal}>
             <img src={largeImage} alt={alt} />
           </Modal>
         )}

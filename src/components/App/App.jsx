@@ -1,24 +1,32 @@
 import React, { Component } from 'react';
-import { fetchImages } from 'services/api';
 
-import { Searchbar } from 'components/Searchbar/Searchbar';
-import { ImageGallery } from 'components/ImageGallery/ImageGallery';
+import Searchbar from 'components/Searchbar/Searchbar';
+import ImageGallery from 'components/ImageGallery/ImageGallery';
+import { AppStyle } from './App.styled';
+import { GlobalStyle } from '../GlobalStyle';
 
-export class App extends Component {
+export default class App extends Component {
   state = {
-    images: [],
+    query: ``,
   };
-  handleSubmit = async value => {
-    const imageArray = await fetchImages(value);
-    this.setState({ images: { imageArray } });
+
+  handleSubmit = value => {
+    if (value === this.state.query) {
+      alert(`You've just searched for the same thing!!!`);
+      return;
+    }
+
+    this.setState({ query: value });
   };
 
   render() {
+    const { query } = this.state;
     return (
-      <div>
+      <AppStyle>
         <Searchbar onSubmit={this.handleSubmit} />
-        <ImageGallery images={this.state.images} />
-      </div>
+        <ImageGallery request={query} />
+        <GlobalStyle />
+      </AppStyle>
     );
   }
 }

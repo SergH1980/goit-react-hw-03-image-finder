@@ -12,3 +12,19 @@ export const ImageList = styled.ul`
   margin-left: auto;
   margin-right: auto;
 `;
+
+export const MessageEmpty = styled.p`
+  padding-top: 250px;
+  font-size: 70px;
+  color: #30611e;
+  margin: 0 auto;
+`;
+
+export const MessageError = styled.p`
+  padding-top: 250px;
+  text-align: center;
+  width: 700px;
+  font-size: 50px;
+  color: #e83737;
+  margin: 0 auto;
+`;
