@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 export default class Modal extends Component {
   static propTypes = {
     onClose: PropTypes.func.isRequired,
+    children: PropTypes.any.isRequired,
   };
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyDown);

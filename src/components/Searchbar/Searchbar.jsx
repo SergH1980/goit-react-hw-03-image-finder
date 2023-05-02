@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import * as yup from 'yup';
 import { Formik } from 'formik';
@@ -21,14 +21,14 @@ const initialValues = {
 };
 
 export default class Searchbar extends Component {
-  // static propTypes = {
-  //   query: PropTypes.string.isRequired,
-  // };
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
 
   render() {
     const handleSubmit = (values, { resetForm }) => {
       this.props.onSubmit(values.query);
-      resetForm();
+      // resetForm();
     };
     return (
       <Formik
